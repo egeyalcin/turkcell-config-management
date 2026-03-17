@@ -1,0 +1,35 @@
+server:
+  port: 8017
+
+spring:
+  datasource:
+    url: jdbc:postgresql://subscription-db-svc:5432/subscription_db
+    username: admin
+    password: sub123
+  liquibase:
+    enabled: true
+    change-log: classpath:/db/changelog/db.changelog-master.xml
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        dialect: org.hibernate.spatial.dialect.postgis.PostgisDialect
+
+  messages:
+    basename: exception
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: turkcell-kafka
+
+springfox:
+  documentation:
+    swagger:
+      v2:
+        path: /api-docs
+        use-default-response-messages: false
