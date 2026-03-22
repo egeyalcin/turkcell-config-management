@@ -21,7 +21,7 @@ spring:
         - id: subscription-route
           uri: http://localhost:8017
           predicates:
-            - Path=/api/v1/subscriptions/**
+            - Path=/api/v1/subscriptions/**,, /api/v1/subscriptions
       discovery:
         locator:
           enabled: true
