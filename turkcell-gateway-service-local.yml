@@ -19,7 +19,7 @@ spring:
 
       routes:
         - id: subscription-route
-          uri: http://subscription-service:8017
+          uri: http://localhost:8017
           predicates:
             - Path=/api/subscription/**
       discovery:
