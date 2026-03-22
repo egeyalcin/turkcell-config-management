@@ -2,10 +2,15 @@ server:
   port: 8018
 
 spring:
+  application:
+    name: payment-service
+
   datasource:
-    url: jdbc:postgresql://subscription-db-svc:5432/subscription_db
+    url: jdbc:postgresql://localhost:5433/payment_db
     username: admin
-    password: sub123
+    password: pay123
+    driver-class-name: org.postgresql.Driver
+
   liquibase:
     enabled: true
     change-log: classpath:/db/changelog/db.changelog-master.xml
@@ -19,31 +24,14 @@ spring:
         format_sql: true
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
-  messages:
-    basename: exception
-
   kafka:
-    bootstrap-servers: kafka-broker-svc:9092
-
+    bootstrap-servers: localhost:9092
     consumer:
-      group-id: subscription-service-group
+      group-id: payment-service-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
       acks: all
-
-    admin:
-      auto-create: true
-
-springfox:
-  documentation:
-    swagger:
-      v2:
-        path: /api-docs
-        use-default-response-messages: false
-
-
