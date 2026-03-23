@@ -1,6 +1,8 @@
 spring:
   application:
     name: turkcell-gateway-service
+  main:
+    allow-bean-definition-overriding: true
   cloud:
     gateway:
       globalcors:
